@@ -3,6 +3,8 @@ dotenv.config();
 
 import express from "express";
 import mongoose from "mongoose";
+//importar o cors
+import cors from "cors";
 
 import path from "path";
 
@@ -19,6 +21,9 @@ class App {
   }
 
   middlewares() {
+    //aplicar dentro do middleware sempre sendo o primeiro
+    this.server.use(cors());
+
     this.server.use(
       "/files",
       express.static(path.resolve(__dirname, "..", "uploads"))
