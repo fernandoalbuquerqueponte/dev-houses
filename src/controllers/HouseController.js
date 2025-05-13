@@ -62,6 +62,9 @@ class HouseController {
     const { house_id } = req.body;
     const { user_id } = req.headers;
 
+    const user = await User.findById(user_id);
+    const houses = await House.findById(house_id);
+
     if (String(user._id) !== String(houses.user)) {
       return res.status(401).json({ error: "Não autorizado!" });
     }
